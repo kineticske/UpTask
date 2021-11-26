@@ -10,8 +10,8 @@ module.exports=function(){
     router.get('/nuevoProyecto', ControllerUpTask.FormularioProyecto )
     router.post('/nuevoProyecto', 
                 body('nombre').not().isEmpty().trim().escape(),
-                ControllerUpTask.nuevoProyecto)
+                ControllerUpTask.nuevoProyecto) //from validator
     return router
-}
+} // router --> all routes
 
 

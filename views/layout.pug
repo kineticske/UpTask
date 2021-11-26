@@ -22,8 +22,9 @@ html(lang="en")
                 h2 proyectos
                 ul#proyectos.proyectos 
                 <!--class and ID in the same time - UP -->
-                    li
-                        a(href="#") Diseño de tienda virtual
-                    li 
-                        a(href="#") Diseño de nuevo blog 
+                    if (proyectos.length)
+                        each proyecto in proyectos
+                            li
+                                a(href="#") #{proyecto.nombre}
+                    
         block contenido

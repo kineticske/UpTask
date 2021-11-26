@@ -1,7 +1,10 @@
-const Proyectos= require('../models/Proyectos')
-exports.ProyectHome=(req, res)=>{
-    res.render('index',{
-        nombrePagina:"Proyectos"
+const Proyectos= require('../models/Proyectos') //import model
+exports.ProyectHome= async (req, res)=>{
+
+    const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
+    res.render('index',{ //(name_view, params) =>
+        nombrePagina:"Proyectos",
+        proyectos
     })
 };
 
