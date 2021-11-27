@@ -97,7 +97,7 @@ exports.formularioEditar=async (req, res) => {
 
     const proyectoPromise = Proyectos.findOne({ 
         where: {
-            url: req.params.id
+            id: req.params.id
         }
     });
 
