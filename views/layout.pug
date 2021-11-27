@@ -6,7 +6,8 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/css/normalize.css")
         link(rel="stylesheet", href="/css/app.css")
-        title #{nombrePagina} <!--using variables-->
+        title #{nombrePagina} 
+        <!--using variables-->
     body 
 
     header.barra 
@@ -25,6 +26,7 @@ html(lang="en")
                     if (proyectos.length)
                         each proyecto in proyectos
                             li
-                                a(href="#") #{proyecto.nombre}
+                                a(href=`/proyectos/${proyecto.url}`) #{proyecto.nombre} 
+                                <!-- previous link //call a router that exists previous assigned in the routes "for if sucess"-->
                     
         block contenido

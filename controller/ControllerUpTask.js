@@ -8,9 +8,11 @@ exports.ProyectHome= async (req, res)=>{
     })
 };
 
-exports.FormularioProyecto =(req, res)=>{
+exports.FormularioProyecto =async (req, res)=>{
+    const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
     res.render('nuevoProyectoVista', {
-        nombrePagina:"Nuevo Proyecto"
+        nombrePagina:"Nuevo Proyecto",
+        proyectos
     })
 }
 
@@ -59,4 +61,51 @@ exports.nuevoProyecto= async (req, res)=>{
         res.redirect('/')
         
     }
+}
+
+exports.proyectosporURL= async (req, res, next) => {
+    const proyecto = await Proyectos.findOne({
+        where: {
+            url: req.params.url
+        }
+    });
+    if(!proyecto) return next(); //validation
+
+    const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
+
+    //render view 
+    res.render('tareas', {
+        nombrePagina:"Tareas del Proyecto",
+        proyecto,
+        proyectos
+    })
+    
+}
+
+//edit proyects
+
+exports.formularioEditar=async (req, res) => {
+    // const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
+
+    // const proyecto = await Proyectos.findOne({ //individual search
+    //     where: {
+    //         url: req.params.id
+    //     }
+    // });
+
+    const proyectosPromise= Proyectos.findAll(); 
+
+    const proyectoPromise = Proyectos.findOne({ 
+        where: {
+            url: req.params.id
+        }
+    });
+
+    [proyectos, proyecto]= await Promise.all([proyectosPromise, proyectoPromise]);//other option because they are independent 
+
+    res.render('nuevoProyectoVista', {
+        nombrePagina:"Editar Proyecto",
+        proyectos,
+        proyecto
+    })
 }
