@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "development": "nodemon ./index.js",
-    "start": "concurrently \"npm run dev\" \"npm run watch\" ",
+    "start": "concurrently \"npm run development\" \"npm run watch\" ",
     "watch": "webpack --watch --mode development"
   },
   "author": "Kineticske",

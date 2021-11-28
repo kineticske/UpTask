@@ -1,4 +1,4 @@
-doctype html
+<!DOCTYPE html>
 html(lang="en")
     head
         meta(charset="UTF-8")
@@ -28,6 +28,8 @@ html(lang="en")
                                 li
                                     a(href=`/proyectos/${proyecto.url}`) #{proyecto.nombre} 
                                     <!-- previous link //call a router that exists previous assigned in the routes "for if sucess"-->
-        script(src="/dist/bundle.js")
+        
 
-        block contenido
+            block contenido
+
+        script(src="/dist/bundle.js")

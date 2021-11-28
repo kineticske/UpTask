@@ -20,6 +20,15 @@ module.exports={
     }
 }
 
+//don't forget install babel-loader
+
+/** 
+Babel is a tool that allows us to transform our last generation JS code (or with extra functionalities) to a Javascript code that any browser or Node.js version 
+(or with extra functionalities) to a Javascript code that any browser or Node.js version can understand. 
+can understand.
+Babel works through plugins so we can tell it what we want it to transform,
+*/
+
 //don't forget to write npm run wath in cmd terminal before write configuration for concurrently
 
 // don't forget this:
@@ -28,7 +37,7 @@ module.exports={
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "development":"nodemon ./index.js",
-    "start": "concurrently \"npm run dev\" \"npm run watch\" ",
+    "start": "concurrently \"npm run development\" \"npm run watch\" ",
     "watch": "webpack --watch --mode development"
 },
 ***/
