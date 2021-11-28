@@ -33,6 +33,10 @@ Loaders: Perform file transformations.
 Plugins: Perform actions on the files.
 Webpack is a module bundler for JavaScript.
 
+
+__dirname: Gives absolute path of the directory that contains the currently executing file.
+./ : Used to display the path where the terminal is opened, which is the current working directory.
+
 **/
 
 //don't forget install babel-loader
