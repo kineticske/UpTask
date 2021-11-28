@@ -1,10 +1,7 @@
 mixin crearProyecto(proyecto={})
-
-<!-- previus sentence need an object-->
-
-    form.agregar-proyecto(action="/nuevoProyecto" method="POST")
+    form.agregar-proyecto(action=`/nuevoProyecto/${proyecto.id || '' }` method="POST")
                 .campo  
                     label(for="nombre") Nombre Proyecto:
-                    input#nombre(type="text", name="nombre" placeholder="Nombre Proyecto")
+                    input#nombre( value =`${proyecto.nombre || ''}` type="text", name="nombre" placeholder="Nombre Proyecto")
                 .campo-enviar 
-                    input(type="submit" value="Agregar").boton
+                    input(type="submit" value=`${proyecto.nombre ? 'Guardar' : 'Agregar'}`).boton

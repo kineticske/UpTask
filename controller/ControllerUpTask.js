@@ -1,4 +1,5 @@
 const Proyectos= require('../models/Proyectos') //import model
+
 exports.ProyectHome= async (req, res)=>{
 
     const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
@@ -42,6 +43,7 @@ exports.FormularioProyecto =async (req, res)=>{
 //with async await
 exports.nuevoProyecto= async (req, res)=>{
     //input is fullfilled
+    const proyectos= await Proyectos.findAll();
     const {nombre}= await req.body; //destrucring this name of variable of reponse
 
     let errores=[];
@@ -57,7 +59,7 @@ exports.nuevoProyecto= async (req, res)=>{
         })
     }else{
         //BD INSERT
-        const proyectos = await Proyectos.create({nombre, url});
+        await Proyectos.create({nombre, url});
         res.redirect('/')
         
     }
@@ -108,4 +110,30 @@ exports.formularioEditar=async (req, res) => {
         proyectos,
         proyecto
     })
+}
+
+
+exports.actualizarProyecto= async (req, res)=>{
+    //input is fullfilled
+    const proyectos= await Proyectos.findAll();
+    const {nombre}= await req.body; //destrucring this name of variable of reponse
+
+    let errores=[];
+
+    if(!nombre){
+        errores.push({'texto': 'Agregar un nombre al proyecto'})
+    }
+
+    if(errores.length>0){
+        res.render('nuevoProyectoVista', {
+            nombrePagina:"Nuevo Proyecto",
+            errores
+        })
+    }else{
+        //BD INSERT
+        await Proyectos.update({nombre:nombre},
+            {where: {id:req.params.id}});
+        res.redirect('/')
+        
+    }
 }

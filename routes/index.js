@@ -16,6 +16,13 @@ module.exports=function(){
 
     //update especific proyect
     router.get('/proyectos/editar/:id', ControllerUpTask.formularioEditar)
+    router.post('/nuevoProyecto/:id', 
+                body('nombre').not().isEmpty().trim().escape(),
+                ControllerUpTask.actualizarProyecto)
+
+
+
+
     return router
 } // router --> all routes
 
