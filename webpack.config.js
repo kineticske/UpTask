@@ -19,3 +19,16 @@ module.exports={
         }]
     }
 }
+
+//don't forget to write npm run wath in cmd terminal before write configuration for concurrently
+
+// don't forget this:
+
+/*** package.json 
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "development":"nodemon ./index.js",
+    "start": "concurrently \"npm run dev\" \"npm run watch\" ",
+    "watch": "webpack --watch --mode development"
+},
+***/
