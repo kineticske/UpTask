@@ -32,3 +32,10 @@ module.exports={
     "watch": "webpack --watch --mode development"
 },
 ***/
+
+//then you must install axios   npm install  --save axios sweetalert2
+
+/** SWEET ALERT
+A BEAUTIFUL, RESPONSIVE, CUSTOMIZABLE, 
+ACCESSIBLE (WAI-ARIA) REPLACEMENT FOR JAVASCRIPT'S POPUP BOXES
+ */

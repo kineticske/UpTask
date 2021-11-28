@@ -1,1 +1,1 @@
-alert('hola')
+import tareas from './modules/proyectos'

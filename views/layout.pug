@@ -10,23 +10,24 @@ html(lang="en")
         <!--using variables-->
     body 
 
-    header.barra 
-        h1 UpTask - Administrators
-        a(href="#") Cerrar Sesión
-        
-    main.contenedor 
-        aside.contenedor-proyectos 
-            .panel.crear-proyecto
-                a(href="/nuevoProyecto").boton Nuevo proyecto
-                span +
-            .panel.lista-proyectos
-                h2 proyectos
-                ul#proyectos.proyectos 
-                <!--class and ID in the same time - UP -->
-                    if (proyectos.length)
-                        each proyecto in proyectos
-                            li
-                                a(href=`/proyectos/${proyecto.url}`) #{proyecto.nombre} 
-                                <!-- previous link //call a router that exists previous assigned in the routes "for if sucess"-->
-                    
+        header.barra 
+            h1 UpTask - Administrators
+            a(href="#") Cerrar Sesión
+            
+        main.contenedor 
+            aside.contenedor-proyectos 
+                .panel.crear-proyecto
+                    a(href="/nuevoProyecto").boton Nuevo proyecto
+                    span +
+                .panel.lista-proyectos
+                    h2 proyectos
+                    ul#proyectos.proyectos 
+                    <!--class and ID in the same time - UP -->
+                        if (proyectos.length)
+                            each proyecto in proyectos
+                                li
+                                    a(href=`/proyectos/${proyecto.url}`) #{proyecto.nombre} 
+                                    <!-- previous link //call a router that exists previous assigned in the routes "for if sucess"-->
+        script(src="/dist/bundle.js")
+
         block contenido
