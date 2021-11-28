@@ -5,8 +5,9 @@ module.exports={
     entry: './public/js/app.js',
     output: {
         filename: 'bundle.js',
-        path: path.join(__dirname, './public/dist') //generate a dist folder
-    },
+        path: path.join(__dirname, './public/dist') //generate a dist folder 
+        // __dirname:  returns the path of the folder where the current JavaScript file resides
+    }, // The ./ gives the current working directory
     module: {
         rules: [{
             test: /\.m?js$/, // what file are you going to use (files with js extension - a regular expressions)
@@ -19,6 +20,20 @@ module.exports={
         }]
     }
 }
+
+/** 
+DON'T FORGET KARINAA!
+
+Webpack is a module bundler for JavaScript.
+
+
+Entry: Indicates the entry point(s).
+Output: Indicates the output point(s).
+Loaders: Perform file transformations.
+Plugins: Perform actions on the files.
+Webpack is a module bundler for JavaScript.
+
+**/
 
 //don't forget install babel-loader
 
