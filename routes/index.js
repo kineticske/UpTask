@@ -14,13 +14,14 @@ module.exports=function(){
     //it's always good to place the used links from pug or view to the routes
     router.get('/proyectos/:url', ControllerUpTask.proyectosporURL)
 
-    //update especific proyect
-    router.get('/proyectos/editar/:id', ControllerUpTask.formularioEditar)
-    router.post('/nuevoProyecto/:id', 
+    //create and update especific proyect
+    router.get('/proyectos/editar/:id', ControllerUpTask.formularioEditar) //update because the function to do it is called from the controller
+    router.post('/nuevoProyecto/:id',  //post 
                 body('nombre').not().isEmpty().trim().escape(),
                 ControllerUpTask.actualizarProyecto)
 
-
+    //delete especific proyect
+    router.delete('/nuevoProyecto/:url', ControllerUpTask.eliminarProyecto) 
 
 
     return router

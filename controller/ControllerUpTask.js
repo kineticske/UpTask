@@ -137,3 +137,8 @@ exports.actualizarProyecto= async (req, res)=>{
         
     }
 }
+
+
+exports.eliminarProyecto = async (req, res, next) => {
+    console.log(req);
+}

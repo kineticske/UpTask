@@ -4,7 +4,8 @@ import axios from "axios";
 const btnDelete= document.querySelector('#eliminar-proyecto');
 
 if(btnDelete){ //it is always good to check if the elements exist
-    btnDelete.addEventListener('click', () =>{ //use sweetalert2
+    btnDelete.addEventListener('click', (e) =>{ //use sweetalert2
+        const proyectosUrl=e.target.dataset.proyectoUrl; //read data-proyecto-url
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -16,6 +17,11 @@ if(btnDelete){ //it is always good to check if the elements exist
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
+                //sending request to axios 
+                const url=`${location.origin}/proyectos/${proyectosUrl}`;
+                axios.delete(url, {params: {urlProyecto}})
+                    .then(response => response)
+
                 Swal.fire(
                 'Deleted!',
                 'Your file has been deleted.',
