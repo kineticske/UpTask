@@ -144,5 +144,5 @@ exports.eliminarProyecto = async (req, res, next) => { //capture the request tha
     // req, query or params
     const {urlProyecto}=req.query
 
-    const result = await Proyectos.destroy({ where: {url /* url on the 'comodin'*/: urlProyecto}}) //DELETE FROM table WHERE id = '',
-} 
+    const result = await Proyectos.destroy({ where: {url : urlProyecto}}) //DELETE FROM table WHERE id = '',
+} /* url on the db is equal to urlProyecto that catch the url that was sent in the request*/
