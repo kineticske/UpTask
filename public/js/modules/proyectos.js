@@ -20,7 +20,7 @@ if(btnDelete){ //it is always good to check if the elements exist
                 //sending request to axios 
                 const url=`${location.origin}/proyectos/${proyectosUrl}`;
                 axios.delete(url, {params: {urlProyecto}})
-                    .then(response => response)
+                    .then(response => console.log(response))
 
                 Swal.fire(
                 'Deleted!',

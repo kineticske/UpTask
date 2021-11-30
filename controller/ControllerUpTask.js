@@ -139,6 +139,10 @@ exports.actualizarProyecto= async (req, res)=>{
 }
 
 
-exports.eliminarProyecto = async (req, res, next) => {
-    console.log(req);
-}
+exports.eliminarProyecto = async (req, res, next) => { //capture the request that was sent on that route 
+
+    // req, query or params
+    const {urlProyecto}=req.query
+
+    const result = await Proyectos.destroy({ where: {url /* url on the 'comodin'*/: urlProyecto}}) //DELETE FROM table WHERE id = '',
+} 
