@@ -13,9 +13,9 @@ const Proyectos = db.define('proyectos', {
     url : Sequelize.STRING(100)
 },{
     hooks: {
-        beforeCreate(proyecto){ //receives the table as a parameter and assigns to the url the concatenation with whatever the shortid generates.
-            const url = slug(nombre).toLowerCase; //create the url
-            proyecto.url=`${url}-${shortid.generate()}`
+        beforeCreate(proyectos){ //receives the table as a parameter and assigns to the url the concatenation with whatever the shortid generates.
+            const url = slug(proyectos.nombre).toLowerCase(); //create the url 
+            proyectos.url=`${url}-${shortid.generate()}`
         }
     }
 }

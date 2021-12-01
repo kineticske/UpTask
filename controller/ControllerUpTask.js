@@ -1,5 +1,6 @@
 const Proyectos= require('../models/Proyectos') //import model
 
+
 exports.ProyectHome= async (req, res)=>{
 
     const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
@@ -44,8 +45,8 @@ exports.FormularioProyecto =async (req, res)=>{
 exports.nuevoProyecto= async (req, res)=>{
     //input is fullfilled
     const proyectos= await Proyectos.findAll();
-    const {nombre}= await req.body; //destrucring this name of variable of reponse
-
+    // const {nombre}= await req.body; //destrucring this name of variable of reponse
+    const nombre= await req.body.nombre; 
     let errores=[];
 
     if(!nombre){
@@ -55,11 +56,12 @@ exports.nuevoProyecto= async (req, res)=>{
     if(errores.length>0){
         res.render('nuevoProyectoVista', {
             nombrePagina:"Nuevo Proyecto",
-            errores
+            errores,
+            proyectos
         })
     }else{
         //BD INSERT
-        await Proyectos.create({nombre, url});
+        await Proyectos.create({nombre});
         res.redirect('/')
         
     }
@@ -103,7 +105,7 @@ exports.formularioEditar=async (req, res) => {
         }
     });
 
-    [proyectos, proyecto]= await Promise.all([proyectosPromise, proyectoPromise]);//other option because they are independent 
+    const [proyectos, proyecto]= await Promise.all([proyectosPromise, proyectoPromise]);//other option because they are independent 
 
     res.render('nuevoProyectoVista', {
         nombrePagina:"Editar Proyecto",
@@ -116,7 +118,7 @@ exports.formularioEditar=async (req, res) => {
 exports.actualizarProyecto= async (req, res)=>{
     //input is fullfilled
     const proyectos= await Proyectos.findAll();
-    const {nombre}= await req.body; //destrucring this name of variable of reponse
+    const {nombre}= req.body; //destrucring this name of variable of reponse
 
     let errores=[];
 
@@ -127,12 +129,15 @@ exports.actualizarProyecto= async (req, res)=>{
     if(errores.length>0){
         res.render('nuevoProyectoVista', {
             nombrePagina:"Nuevo Proyecto",
-            errores
+            errores,
+            proyectos
         })
     }else{
         //BD INSERT
-        await Proyectos.update({nombre:nombre},
-            {where: {id:req.params.id}});
+        await Proyectos.update(
+            {nombre:nombre},
+            {where: {id:req.params.id}}
+            );
         res.redirect('/')
         
     }
@@ -141,8 +146,20 @@ exports.actualizarProyecto= async (req, res)=>{
 
 exports.eliminarProyecto = async (req, res, next) => { //capture the request that was sent on that route 
 
+    console.log(req.params)
+    console.log(req.query)
     // req, query or params
-    const {urlProyecto}=req.query
+    const {urlProyecto}=req.query;
 
-    const result = await Proyectos.destroy({ where: {url : urlProyecto}}) //DELETE FROM table WHERE id = '',
-} /* url on the db is equal to urlProyecto that catch the url that was sent in the request*/
+    const result = await Proyectos.destroy({ where: {url : urlProyecto}}); //DELETE FROM table WHERE id = '',
+    /* url on the db is equal to urlProyecto that catch the url that was sent in the request*/
+
+    if (!result){
+        return next(); //return to the next step of response, next middleware
+    }
+    
+    res.send('Eliminado');
+
+
+
+} 
