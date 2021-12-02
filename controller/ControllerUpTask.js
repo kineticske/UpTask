@@ -145,7 +145,7 @@ exports.actualizarProyecto= async (req, res)=>{
 
 
 exports.eliminarProyecto = async (req, res, next) => { //capture the request that was sent on that route 
-
+    console.log(req)
     console.log(req.params)
     console.log(req.query)
     // req, query or params
@@ -158,8 +158,7 @@ exports.eliminarProyecto = async (req, res, next) => { //capture the request tha
         return next(); //return to the next step of response, next middleware
     }
     
-    res.send('Eliminado');
-
+    res.status(200).send('Eliminado');
 
 
 } 

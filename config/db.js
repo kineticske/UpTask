@@ -4,8 +4,8 @@ const db = new Sequelize('UptaskNode', 'root', 'root', { // sequelize (Name DB, 
     host: 'localhost',
     dialect: 'mysql', // | 'otherDB'
     port: '3306',
-    operatorsAliases: false, 
-    define: {timestamps: false } ,
+    operatorsAliases: 0, 
+    define: {timestamps: 0 } ,
     pool: {
     max: 5,
     min: 0,

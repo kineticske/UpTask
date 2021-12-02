@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import axios from "axios";
+import axios from 'axios';
 
 const btnDelete= document.querySelector('#eliminar-proyecto');
 
@@ -19,33 +19,35 @@ if(btnDelete){ //it is always good to check if the elements exist
         }).then((result) => {
             if (result.value) {
                 //sending request from axios 
+                console.log(result)
                 const url=`${location.origin}/proyectos/${urlProyecto}`;
                 console.log(url)
-                axios.delete(url, {params: {urlProyecto}}).then((response) => {
+                axios.delete(url, {params: {urlProyecto}})
+                    .then(function (response) {
                         console.log(response);
                     // return;
-                        Swal.fire(
-                            'Deleted!',
-                            response.data,
-                            'success'
-                    );
-                        setTimeout(() =>{
-                            window.location.href="/" //window.location set the location to go
-                            }, 3000); //redirect to initial page
-                        })
-                    .catch(() =>{
+                            Swal.fire(
+                                'Deleted!',
+                                response.data,
+                                'success'
+                        );
+                            setTimeout(() =>{
+                                window.location.href='/' //window.location set the location to go
+                                }, 3000); //redirect to initial page
+                            }
+                    )
+                    .catch((error) =>{
+                        console.log(error);
                         Swal.fire(
                             {
                                 // type : 'error',
                                 title : 'Hubo un error',
                                 text:'no se cargó'
                                     }
-                                );
-                            });
+                                )
+                            })
             }
-        });
-    });
+        })
+    })
 }
-
-
 export default btnDelete;

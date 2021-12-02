@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const {body}=require('express-validator/check')
+const {body}=require('express-validator')
 
 
 const ControllerUpTask= require('../controller/ControllerUpTask'); //import controller
@@ -21,7 +21,7 @@ module.exports=function(){
                 ControllerUpTask.actualizarProyecto)
 
     //delete especific proyect
-    router.delete('/nuevoProyecto/:url', ControllerUpTask.eliminarProyecto) 
+    router.delete('/proyectos/:url', ControllerUpTask.eliminarProyecto) 
 
 
     return router

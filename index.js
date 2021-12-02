@@ -2,7 +2,7 @@ const express = require('express');
 const routes = require('./routes'); //routes
 const path = require('path'); //The path module provides utilities for working with file and directory paths. 
 const bodyParser=require('body-parser');
-
+const expressValidator = require('express-validator'); //express validator
 const helper = require('./helper');
 //connection to DB
 
@@ -30,6 +30,8 @@ app.use((req, res, next) => {
 })
 //bodyParser
 app.use(bodyParser.urlencoded({extended: true})); //for forms 
+
+// app.use(expressValidator());
 
 app.use('/', routes());
 
