@@ -9,7 +9,8 @@ const helper = require('./helper');
 const db = require('./config/db'); //import db
 //import model
 
-require('./models/Proyectos'); //model
+require('./models/Proyectos'); //proyect model
+require('./models/Tareas'); //task model
 
 db.sync() // This creates the table if it doesn't exist (and does nothing if it already exists), return a promise
     .then(()=> {console.log('conectado')})
