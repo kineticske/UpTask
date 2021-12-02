@@ -3,7 +3,29 @@ extends layout
 block contenido
     .contenido-principal
         h1 #{nombrePagina} - #{proyecto.nombre}
+        form.agregar-tarea(action=`/proyectos/${proyecto.url}` method="POST")
+            .campo
+                label(for="tareas") Tarea
+                input.nombre-tarea(type="text" name="tareas" placeholder="Nombre Tarea")
+                <!-- Taking the url of proyect defined by controller -->
+            .campo.enviar
+                input.boton.nueva-tarea(type="submit" value="Agregar" )
 
+        .listado-pendientes
+            ul
+                if tareas.length 
+                    each tarea in tareas
+                        li.tarea(data-tarea=tarea.id)
+                            p=tarea.tareas
+                            .acciones
+                                if tarea.estado
+                                    i.far.fa-check-circle.completo
+                                else
+                                    i.far.fa-check-circle
+                                i.fas.fa-trash
+                else
+                    p No hay tareas en este proyecto ¡Agrega una!
+        //- pre=var_dump(tareas)
 
 
         .contenedor-acciones 

@@ -1,4 +1,5 @@
 const Proyectos= require('../models/Proyectos') //import model
+const Tareas= require('../models/Tareas') //import model
 
 
 exports.ProyectHome= async (req, res)=>{
@@ -71,17 +72,27 @@ exports.proyectosporURL= async (req, res, next) => {
     const proyecto = await Proyectos.findOne({
         where: {
             url: req.params.url
-        }
+        },
+        // include: [
+        //         { model: Proyectos } //see the associated Project
+        //     ]
     });
     if(!proyecto) return next(); //validation
 
     const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
 
+    //see all the tasks 
+    const tareas= await Tareas.findAll({where: {
+        proyectoId: proyecto.id //proyect was found in this function on the line 72
+    }})
+
+    console.log(tareas)
     //render view 
     res.render('tareas', {
         nombrePagina:"Tareas del Proyecto",
         proyecto,
-        proyectos
+        proyectos,
+        tareas
     })
     
 }

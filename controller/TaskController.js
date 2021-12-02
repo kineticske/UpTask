@@ -9,15 +9,16 @@ exports.addTask = async (req, res, next) => {
 
     // console.log(proyecto)
     // console.log(req.body) //recomended because is the data sent from the frontend side
-    const {tarea} =req.body;
+    const {tareas} =req.body;
 
-    console.log(tarea)
+    console.log(tareas)
 
     const estado=0; //by default
 
     const proyectoId= proyecto.id; //project ID
 
-    const result= await Tareas.create({tarea, estado, proyectoId}); //same order from database
+    const result= await Tareas.create({ tareas, estado, proyectoId}); //same order from database
+    console.log(result)
 
     if(!result) { return next(); }
 
