@@ -41,3 +41,7 @@ exports.patchStateTask= async (req, res, next) => {
 
     res.status(200).send('Actualizando')
 }
+
+exports.deleteTask= async (req, res, next) => {
+    res.send('eliminando')
+}

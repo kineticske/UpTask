@@ -29,7 +29,8 @@ module.exports=function(){
                 TaskController.addTask)
     //update tasks 
     router.patch('/tareas/:id', TaskController.patchStateTask) //update an especific part of the object, not all object
-
+    // delete tasks
+    router.delete('/tareas/:id', TaskController.deleteTask) //update an especific part of the object, not all object
 
     return router
 } // router --> all routes

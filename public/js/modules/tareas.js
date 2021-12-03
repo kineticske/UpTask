@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const tareas=document.querySelector('.listado-pendientes');
 
@@ -22,9 +23,27 @@ if(tareas){
                 )
             }
             if(e.target.classList.contains('fa-trash')){
-                //first: obtain HTML element
+                //first: obtain HTML element and ID
                 const tareaHTML= e.target.parentElement.parentElement,
                     idTarea= tareaHTML.dataset.tarea;
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'No, dont delete it!',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if(result){
+                            //send delete from axios to back
+                            axios.delete(url, {params: {idTarea}})
+                                .then((response) => {
+                                    console.log(response);
+                                })
+                        }
+                    })
             }
         }
     )}
