@@ -24,8 +24,12 @@ module.exports=function(){
     router.delete('/proyectos/:url', ControllerUpTask.eliminarProyecto) 
 
     //TASKS - PROYECTS
+    //adding one task
     router.post('/proyectos/:url',  //post 
                 TaskController.addTask)
+    //update tasks 
+    router.patch('/tareas/:id', TaskController.patchStateTask) //update an especific part of the object, not all object
+
 
     return router
 } // router --> all routes

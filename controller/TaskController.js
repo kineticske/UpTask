@@ -24,3 +24,20 @@ exports.addTask = async (req, res, next) => {
 
     res.redirect(`/proyectos/${req.params.url}`); //is equivalent to refresh the same page
 }
+
+exports.patchStateTask= async (req, res, next) => {
+    const {id} = req.params;
+    const tarea= await Tareas.findOne({where: {id}})
+
+    let estado= 0;
+    if(tarea.estado==estado) {
+        estado=1;
+    } 
+    tarea.estado=estado
+
+    const result= await tarea.save();
+
+    if(!result) {return next();}
+
+    res.status(200).send('Actualizando')
+}

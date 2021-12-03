@@ -343,7 +343,7 @@ eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_proyectos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/proyectos */ \"./public/js/modules/proyectos.js\");\n/* harmony import */ var _modules_tareas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/tareas */ \"./public/js/modules/tareas.js\");\n/* harmony import */ var _modules_tareas__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_tareas__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n//# sourceURL=webpack://uptask/./public/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_proyectos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/proyectos */ \"./public/js/modules/proyectos.js\");\n/* harmony import */ var _modules_tareas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/tareas */ \"./public/js/modules/tareas.js\");\n\n\n\n//# sourceURL=webpack://uptask/./public/js/app.js?");
 
 /***/ }),
 
@@ -362,9 +362,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!*************************************!*\
   !*** ./public/js/modules/tareas.js ***!
   \*************************************/
-/***/ ((module) => {
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-eval("var tareas = document.querySelector('.listado-pendientes');\n\nif (tareas) {\n  tareas.addEventListener('click', function (e) {\n    if (e.target.classList.contains('fa-check-circle')) {\n      console.log('Actualizando');\n      var icon = e.target,\n          idTarea = icon.parentElement.parentElement.dataset.tarea;\n      console.log(idTarea);\n    }\n  });\n}\n\nmodule.exports = tareas;\n\n//# sourceURL=webpack://uptask/./public/js/modules/tareas.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* module decorator */ module = __webpack_require__.hmd(module);\n\nvar tareas = document.querySelector('.listado-pendientes');\n\nif (tareas) {\n  tareas.addEventListener('click', function (e) {\n    if (e.target.classList.contains('fa-check-circle')) {\n      console.log('Actualizando');\n      var icon = e.target;\n      var idTarea = icon.parentElement.parentElement.dataset.tarea;\n      console.log(idTarea); //request to /tareas/:id\n\n      var url = \"\".concat(location.origin, \"/tareas/\").concat(idTarea);\n      axios__WEBPACK_IMPORTED_MODULE_0___default().patch(url, {\n        idTarea: idTarea\n      }).then(function (response) {\n        if (response.status === 200) {\n          icon.classList.toggle('completo');\n        }\n      });\n    }\n\n    if (e.target.classList.contains('fa-trash')) {\n      //first: obtain HTML element\n      var tareaHTML = e.target.parentElement.parentElement,\n          _idTarea = tareaHTML.dataset.tarea;\n    }\n  });\n}\n\nmodule.exports = tareas;\n\n//# sourceURL=webpack://uptask/./public/js/modules/tareas.js?");
 
 /***/ })
 
@@ -382,13 +383,16 @@ eval("var tareas = document.querySelector('.listado-pendientes');\n\nif (tareas)
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			id: moduleId,
+/******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -416,6 +420,21 @@ eval("var tareas = document.querySelector('.listado-pendientes');\n\nif (tareas)
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/harmony module decorator */
+/******/ 	(() => {
+/******/ 		__webpack_require__.hmd = (module) => {
+/******/ 			module = Object.create(module);
+/******/ 			if (!module.children) module.children = [];
+/******/ 			Object.defineProperty(module, 'exports', {
+/******/ 				enumerable: true,
+/******/ 				set: () => {
+/******/ 					throw new Error('ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: ' + module.id);
+/******/ 				}
+/******/ 			});
+/******/ 			return module;
 /******/ 		};
 /******/ 	})();
 /******/ 	
