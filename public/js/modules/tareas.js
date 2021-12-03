@@ -26,6 +26,7 @@ if(tareas){
                 //first: obtain HTML element and ID
                 const tareaHTML= e.target.parentElement.parentElement,
                     idTarea= tareaHTML.dataset.tarea;
+                    const url = `${location.origin}/tareas/${idTarea}`;
                     Swal.fire({
                         title: 'Are you sure?',
                         text: "You won't be able to revert this!",
@@ -40,7 +41,12 @@ if(tareas){
                             //send delete from axios to back
                             axios.delete(url, {params: {idTarea}})
                                 .then((response) => {
-                                    console.log(response);
+                                    console.log(response)
+                                    if(response.status===200) {
+                                        //delete node element
+                                        tareaHTML.parentElement.removeChild(tareaHTML);
+                                        //alert optional
+                                    }
                                 })
                         }
                     })
@@ -49,3 +55,6 @@ if(tareas){
     )}
 
 module.exports=tareas;
+
+//params print id router
+//query print variable

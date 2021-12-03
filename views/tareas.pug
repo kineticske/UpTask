@@ -27,6 +27,12 @@ block contenido
                     p No hay tareas en este proyecto ¡Agrega una!
 
 
+        <!-- Avance del proyecto -->
+        .avance 
+            h2 Avance del Proyecto
+            #barra-avance.barra-avance
+                #porcentaje.porcentaje
+
         .contenedor-acciones 
             a(href=`/proyectos/editar/${proyecto.id}` class="boton") Editar Proyecto
             button#eliminar-proyecto(data-proyecto-url=proyecto.url type="button" class="boton eliminar") Eliminar Proyect

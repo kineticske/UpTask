@@ -43,5 +43,9 @@ exports.patchStateTask= async (req, res, next) => {
 }
 
 exports.deleteTask= async (req, res, next) => {
-    res.send('eliminando')
+    const {id} = req.params;
+    const result = await Tareas.destroy({where: {id}}); //id:id
+
+    if(!result) {return next();}
+    res.status(200).send('Eliminando la tarea')
 }
