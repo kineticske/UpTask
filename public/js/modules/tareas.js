@@ -54,7 +54,7 @@ if(tareas){
         }
     )}
 
-module.exports=tareas;
+export default tareas;
 
 //params print id router
 //query print variable

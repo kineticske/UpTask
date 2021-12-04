@@ -1,7 +1,8 @@
 import proyectos from './modules/proyectos'
 import tareas from './modules/tareas'
-import {actualizarAvance} from './functions/avance';
 
-document.addEventListener('DOMContentLoaded', () => {
-    actualizarAvance();
-})
+import {actualizarAvance} from './funciones/avance';
+
+document.addEventListener('DOMContentLoaded', () =>{
+    actualizarAvance()
+});

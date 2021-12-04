@@ -343,18 +343,18 @@ eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_proyectos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/proyectos */ \"./public/js/modules/proyectos.js\");\n/* harmony import */ var _modules_tareas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/tareas */ \"./public/js/modules/tareas.js\");\n/* harmony import */ var _functions_avance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/avance */ \"./public/js/functions/avance.js\");\n\n\n\ndocument.addEventListener('DOMContentLoaded', function () {\n  (0,_functions_avance__WEBPACK_IMPORTED_MODULE_2__.actualizarAvance)();\n});\n\n//# sourceURL=webpack://uptask/./public/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_proyectos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/proyectos */ \"./public/js/modules/proyectos.js\");\n/* harmony import */ var _modules_tareas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/tareas */ \"./public/js/modules/tareas.js\");\n/* harmony import */ var _funciones_avance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./funciones/avance */ \"./public/js/funciones/avance.js\");\n\n\n\ndocument.addEventListener('DOMContentLoaded', function () {\n  (0,_funciones_avance__WEBPACK_IMPORTED_MODULE_2__.actualizarAvance)();\n});\n\n//# sourceURL=webpack://uptask/./public/js/app.js?");
 
 /***/ }),
 
-/***/ "./public/js/functions/avance.js":
+/***/ "./public/js/funciones/avance.js":
 /*!***************************************!*\
-  !*** ./public/js/functions/avance.js ***!
+  !*** ./public/js/funciones/avance.js ***!
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"actualizarAvance\": () => (/* binding */ actualizarAvance)\n/* harmony export */ });\nalert('heeey');\nvar actualizarAvance = function actualizarAvance() {\n  //select tasks \n  var tasks = document.querySelectorAll('li.tarea');\n\n  if (tasks.length) {\n    //select complete tasks\n    var completeTasks = document.querySelectorAll('i.completo'); //calculate the progress\n\n    var avance = Math.round(completeTasks.length / tasks.length * 100);\n    console.log(avance); //show the progress bar\n\n    var porcentaje = document.querySelector('#porcentaje');\n    porcentaje.style.width = avance + '%'; //67% of width\n  }\n};\n\n//# sourceURL=webpack://uptask/./public/js/functions/avance.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"actualizarAvance\": () => (/* binding */ actualizarAvance)\n/* harmony export */ });\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ \"./node_modules/sweetalert2/dist/sweetalert2.all.js\");\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);\n\nvar actualizarAvance = function actualizarAvance() {\n  //select tasks \n  var tareas = document.querySelectorAll('li.tarea');\n\n  if (tareas.length) {\n    //select complete tasks\n    var tareasCompletas = document.querySelectorAll('i.completo'); //calculate the progress\n\n    var avance = Math.round(tareasCompletas.length / tareas.length * 100);\n    console.log(avance); //show the progress bar\n\n    var porcentaje = document.querySelector('#porcentaje');\n    porcentaje.style.width = avance + '%'; // n% width\n\n    if (avance === 100) {\n      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire('Completaste el Proyecto', 'Felicidades, has terminado tus tareas', 'success');\n    }\n  }\n};\n\n//# sourceURL=webpack://uptask/./public/js/funciones/avance.js?");
 
 /***/ }),
 
@@ -373,10 +373,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!*************************************!*\
   !*** ./public/js/modules/tareas.js ***!
   \*************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ \"./node_modules/sweetalert2/dist/sweetalert2.all.js\");\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);\n/* module decorator */ module = __webpack_require__.hmd(module);\n\n\nvar tareas = document.querySelector('.listado-pendientes');\n\nif (tareas) {\n  tareas.addEventListener('click', function (e) {\n    if (e.target.classList.contains('fa-check-circle')) {\n      console.log('Actualizando');\n      var icon = e.target;\n      var idTarea = icon.parentElement.parentElement.dataset.tarea;\n      console.log(idTarea); //request to /tareas/:id\n\n      var url = \"\".concat(location.origin, \"/tareas/\").concat(idTarea);\n      axios__WEBPACK_IMPORTED_MODULE_0___default().patch(url, {\n        idTarea: idTarea\n      }).then(function (response) {\n        if (response.status === 200) {\n          icon.classList.toggle('completo');\n        }\n      });\n    }\n\n    if (e.target.classList.contains('fa-trash')) {\n      //first: obtain HTML element and ID\n      var tareaHTML = e.target.parentElement.parentElement,\n          _idTarea = tareaHTML.dataset.tarea;\n\n      var _url = \"\".concat(location.origin, \"/tareas/\").concat(_idTarea);\n\n      sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({\n        title: 'Are you sure?',\n        text: \"You won't be able to revert this!\",\n        icon: 'warning',\n        showCancelButton: true,\n        confirmButtonColor: '#3085d6',\n        cancelButtonColor: '#d33',\n        cancelButtonText: 'No, dont delete it!',\n        confirmButtonText: 'Yes, delete it!'\n      }).then(function (result) {\n        if (result) {\n          //send delete from axios to back\n          axios__WEBPACK_IMPORTED_MODULE_0___default()[\"delete\"](_url, {\n            params: {\n              idTarea: _idTarea\n            }\n          }).then(function (response) {\n            console.log(response);\n\n            if (response.status === 200) {\n              //delete node element\n              tareaHTML.parentElement.removeChild(tareaHTML); //alert optional\n            }\n          });\n        }\n      });\n    }\n  });\n}\n\nmodule.exports = tareas; //params print id router\n//query print variable\n\n//# sourceURL=webpack://uptask/./public/js/modules/tareas.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ \"./node_modules/sweetalert2/dist/sweetalert2.all.js\");\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);\n\n\nvar tareas = document.querySelector('.listado-pendientes');\n\nif (tareas) {\n  tareas.addEventListener('click', function (e) {\n    if (e.target.classList.contains('fa-check-circle')) {\n      console.log('Actualizando');\n      var icon = e.target;\n      var idTarea = icon.parentElement.parentElement.dataset.tarea;\n      console.log(idTarea); //request to /tareas/:id\n\n      var url = \"\".concat(location.origin, \"/tareas/\").concat(idTarea);\n      axios__WEBPACK_IMPORTED_MODULE_0___default().patch(url, {\n        idTarea: idTarea\n      }).then(function (response) {\n        if (response.status === 200) {\n          icon.classList.toggle('completo');\n        }\n      });\n    }\n\n    if (e.target.classList.contains('fa-trash')) {\n      //first: obtain HTML element and ID\n      var tareaHTML = e.target.parentElement.parentElement,\n          _idTarea = tareaHTML.dataset.tarea;\n\n      var _url = \"\".concat(location.origin, \"/tareas/\").concat(_idTarea);\n\n      sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({\n        title: 'Are you sure?',\n        text: \"You won't be able to revert this!\",\n        icon: 'warning',\n        showCancelButton: true,\n        confirmButtonColor: '#3085d6',\n        cancelButtonColor: '#d33',\n        cancelButtonText: 'No, dont delete it!',\n        confirmButtonText: 'Yes, delete it!'\n      }).then(function (result) {\n        if (result) {\n          //send delete from axios to back\n          axios__WEBPACK_IMPORTED_MODULE_0___default()[\"delete\"](_url, {\n            params: {\n              idTarea: _idTarea\n            }\n          }).then(function (response) {\n            console.log(response);\n\n            if (response.status === 200) {\n              //delete node element\n              tareaHTML.parentElement.removeChild(tareaHTML); //alert optional\n            }\n          });\n        }\n      });\n    }\n  });\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tareas); //params print id router\n//query print variable\n\n//# sourceURL=webpack://uptask/./public/js/modules/tareas.js?");
 
 /***/ })
 
@@ -394,16 +394,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axio
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			loaded: false,
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -431,21 +428,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axio
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/harmony module decorator */
-/******/ 	(() => {
-/******/ 		__webpack_require__.hmd = (module) => {
-/******/ 			module = Object.create(module);
-/******/ 			if (!module.children) module.children = [];
-/******/ 			Object.defineProperty(module, 'exports', {
-/******/ 				enumerable: true,
-/******/ 				set: () => {
-/******/ 					throw new Error('ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: ' + module.id);
-/******/ 				}
-/******/ 			});
-/******/ 			return module;
 /******/ 		};
 /******/ 	})();
 /******/ 	
