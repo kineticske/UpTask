@@ -32,6 +32,10 @@ module.exports=function(){
     // delete tasks
     router.delete('/tareas/:id', TaskController.deleteTask) //update an especific part of the object, not all object
 
+    //USERS
+
+    // create a new account
+    router.get('crear-cuenta', UserController.createAccount)
     return router
 } // router --> all routes
 
