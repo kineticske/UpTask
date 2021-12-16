@@ -52,3 +52,4 @@ module.exports = Usuarios;
 npm install --save bcrypt-nodejs
 
 */
+//valid comment
