@@ -5,6 +5,7 @@ const {body}=require('express-validator')
 
 const ControllerUpTask= require('../controller/ControllerUpTask'); //import controller general proyects
 const TaskController= require('../controller/TaskController'); //import task controller
+const UserController= require('../controller/UserController'); //import User Controller
 
 module.exports=function(){
     //PROYECTS
@@ -35,7 +36,8 @@ module.exports=function(){
     //USERS
 
     // create a new account
-    router.get('crear-cuenta', UserController.createAccount)
+    router.get('/crear-cuenta', UserController.formcreateAccount)
+    router.post('/crear-cuenta', UserController.createAccount)
     return router
 } // router --> all routes
 
