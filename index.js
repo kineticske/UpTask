@@ -5,6 +5,8 @@ const bodyParser=require('body-parser');
 const expressValidator = require('express-validator'); //express validator
 const helper = require('./helper');
 const flash = require('connect-flash');
+const session=require('express-session');
+const cookieParser = require('cookie-parser');
 //connection to DB
 const db = require('./config/db'); //import db
 //import model
@@ -19,20 +21,25 @@ db.sync() // This creates the table if it doesn't exist (and does nothing if it 
 
 const app = express();
 
-//bodyParser
-app.use(bodyParser.urlencoded({extended: true})); //for forms 
+app.use(express.static('public')); //static files
 
 app.set('view engine', 'pug');
 
-app.use(express.static('public')); //static files
+//bodyParser
+app.use(bodyParser.urlencoded({extended: true})); //for forms 
 
 app.set('views', path.join(__dirname, 'views')); //views
 
 app.use(flash()); //
 
-//using helper's modules
+app.use(session({
+    secret: 'secret',
+}))
+
+//using helper's modules and flash
 app.use((req, res, next) => {
     res.locals.var_dump = helper.var_dump;
+    res.locals.messages=req.flash()
     next();
 })
 

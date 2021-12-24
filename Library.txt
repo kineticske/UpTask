@@ -1,1 +1,3 @@
 npm install --save connect-flash //handling errors (index)
+
+npm install --save cookie-parser express-session //1. aoauth 2. go to other website without end session

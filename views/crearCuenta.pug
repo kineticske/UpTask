@@ -6,7 +6,12 @@ html(lang="en")
         .contenedor-formulario
             h1 Crea tu cuenta en Uptask
 
-            if errores 
+            if locals.errores
+                .alertas
+                    each xategory in Object.keys(locals.messages)
+                        each error in errores[category]
+                            .alerta(class=`${category}`)
+
                 each error in errores 
                     p.error.alerta=error.message
 
