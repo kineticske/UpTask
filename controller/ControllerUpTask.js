@@ -12,7 +12,7 @@ exports.ProyectHome= async (req, res)=>{
         })
     }catch(e){
         console.log(e)
-    } //h
+    } //precaution
 }
 
 

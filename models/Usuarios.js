@@ -16,8 +16,8 @@ const Usuarios= db.define('usuarios',{
             isEmail:{
                 msg: 'Please enter a valid email' //only false
             },
-            noEmpty:{
-                msg: 'Password must a valid string'
+            notEmpty:{
+                msg: 'email must a valid string'
             }
         },
         unique:{
@@ -29,7 +29,7 @@ const Usuarios= db.define('usuarios',{
         type: Sequelize.STRING(60),
         allowNull: false,
         validate: {
-            noEmpty:{
+            notEmpty:{
                 msg: 'Password must a valid string'
             }
         }
