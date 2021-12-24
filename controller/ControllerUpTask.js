@@ -1,15 +1,20 @@
 const Proyectos= require('../models/Proyectos') //import model
 const Tareas= require('../models/Tareas') //import model
+// const Usuarios= require('../models/Usuarios') //import model
 
 
 exports.ProyectHome= async (req, res)=>{
+    try{
+        const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
+        res.render('index',{ 
+            nombrePagina:"Proyectos",
+            proyectos
+        })
+    }catch(e){
+        console.log(e)
+    } //h
+}
 
-    const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
-    res.render('index',{ //(name_view, params) =>
-        nombrePagina:"Proyectos",
-        proyectos
-    })
-};
 
 exports.FormularioProyecto =async (req, res)=>{
     const proyectos= await Proyectos.findAll(); //sequelize method to get all proyectos
@@ -18,7 +23,6 @@ exports.FormularioProyecto =async (req, res)=>{
         proyectos
     })
 }
-
 // exports.nuevoProyecto=(req, res)=>{
 //     //input is fullfilled
 //     const {nombre}=req.body; //destrucring this name of variable of reponse

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db');
-const Proyectos=require('./Proyectos');
+const Proyectos=require('../models/Proyectos');
 const bcrypt = require('bcrypt-nodejs');
 
 const Usuarios= db.define('usuarios',{
@@ -43,7 +43,7 @@ const Usuarios= db.define('usuarios',{
 }
 )
 
-Usuarios.hasMany(Proyectos);
+Usuarios.hasMany(Proyectos); //user can has many projects
 
 module.exports = Usuarios;
 
@@ -53,3 +53,4 @@ npm install --save bcrypt-nodejs
 
 */
 //valid comment
+

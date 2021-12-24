@@ -14,8 +14,8 @@ require('./models/Tareas'); //task model
 require('./models/Usuarios'); //Users model
 
 db.sync() // This creates the table if it doesn't exist (and does nothing if it already exists), return a promise
-.then(()=> {console.log('conectado')})
-.catch((err)=>{console.log(err)})
+    .then(()=> {console.log('conectado')})
+    .catch((err)=>{console.log(err)})
 
 const app = express();
 
