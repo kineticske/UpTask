@@ -32,11 +32,15 @@ app.set('views', path.join(__dirname, 'views')); //views
 
 app.use(flash()); //
 
+app.use(cookieParser())
+//sesions in distint pages 
 app.use(session({
     secret: 'secret',
+    resave: false,
+    saveUninitialized: false
 }))
 
-//using helper's modules and flash
+//using helper's modules and flash  (local variables)
 app.use((req, res, next) => {
     res.locals.var_dump = helper.var_dump;
     res.locals.messages=req.flash()

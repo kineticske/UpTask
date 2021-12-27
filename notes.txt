@@ -1,0 +1,28 @@
+Index is the general
+
+<!-- Create or edit
+    mixins: 
+        mixin pet(name)
+    li.pet= name
+
+
+    ul
+    +pet('cat')
+    +pet('dog')
+    +pet('pig')
+
+    ----- compiled to :
+    <ul>
+        <li class="pet">cat</li>
+        <li class="pet">dog</li>
+        <li class="pet">pig</li>
+    </ul>
+--->
+
+
+about flash connection 
+1. need to connect in index, previous need to install
+2. switch in local variable with res.local.messages and send back a request of object flash when is used 
+3. In the specific controller if catch some error go to create a flash error object in wich 
+    running around the errors array and you must use map method to get all errors
+    then, you must send to the view messages as a req.flash()

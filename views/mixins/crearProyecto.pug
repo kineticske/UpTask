@@ -6,26 +6,3 @@ mixin crearProyecto(proyecto={})
                 .campo-enviar 
                     input(type="submit" value=`${proyecto.nombre ? 'Guardar' : 'Agregar'}`).boton
 
-
-<!-- Create or edit
-    mixins: 
-        mixin pet(name)
-    li.pet= name
-
-
-    ul
-    +pet('cat')
-    +pet('dog')
-    +pet('pig')
-
-    ----- compiled to :
-    <ul>
-        <li class="pet">cat</li>
-        <li class="pet">dog</li>
-        <li class="pet">pig</li>
-    </ul>
-
-
-
-
---->
