@@ -26,3 +26,9 @@ about flash connection
 3. In the specific controller if catch some error go to create a flash error object in wich 
     running around the errors array and you must use map method to get all errors
     then, you must send to the view messages as a req.flash()
+
+special note: flash use sequelize validation 
+
+
+PASSPORT AUTH
+http://www.passportjs.org/

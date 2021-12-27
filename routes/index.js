@@ -38,6 +38,8 @@ module.exports=function(){
     // create a new account
     router.get('/crear-cuenta', UserController.formcreateAccount)
     router.post('/crear-cuenta', UserController.createAccount)
+    //signin 
+    router.get('/iniciar-sesion', UserController.formOpenSession)
     return router
 } // router --> all routes
 

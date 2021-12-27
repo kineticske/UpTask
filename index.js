@@ -7,6 +7,7 @@ const helper = require('./helper');
 const flash = require('connect-flash');
 const session=require('express-session');
 const cookieParser = require('cookie-parser');
+const passport = require('./config/passport')
 //connection to DB
 const db = require('./config/db'); //import db
 //import model
@@ -33,12 +34,16 @@ app.set('views', path.join(__dirname, 'views')); //views
 app.use(flash()); //
 
 app.use(cookieParser())
+
 //sesions in distint pages 
 app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: false
 }))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 //using helper's modules and flash  (local variables)
 app.use((req, res, next) => {

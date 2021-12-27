@@ -43,6 +43,14 @@ const Usuarios= db.define('usuarios',{
 }
 )
 
+
+//Personalized methods 
+Usuarios.prototype.verificarPassword = function(password){
+    return bcrypt.compareSync(password, this.password) //compared password(input) vs password (hashed in db)
+}
+
+//All user have the previous method
+
 Usuarios.hasMany(Proyectos); //user can has many projects
 
 module.exports = Usuarios;
