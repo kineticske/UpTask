@@ -6,6 +6,7 @@ const {body}=require('express-validator')
 const ControllerUpTask= require('../controller/ControllerUpTask'); //import controller general proyects
 const TaskController= require('../controller/TaskController'); //import task controller
 const UserController= require('../controller/UserController'); //import User Controller
+const oauthController= require('../controller/oauthController') // import oauth controller0
 
 module.exports=function(){
     //PROYECTS
@@ -40,6 +41,7 @@ module.exports=function(){
     router.post('/crear-cuenta', UserController.createAccount)
     //signin 
     router.get('/iniciar-sesion', UserController.formOpenSession)
+    router.post('/iniciar-sesion', oauthController.authUser)
     return router
 } // router --> all routes
 
