@@ -41,7 +41,8 @@ module.exports=function(){
     router.post('/crear-cuenta', UserController.createAccount)
     //signin 
     router.get('/iniciar-sesion', UserController.formOpenSession)
-    router.post('/iniciar-sesion', oauthController.authUser)
+    router.post('/iniciar-sesion', oauthController.authUser
+    )
     return router
 } // router --> all routes
 

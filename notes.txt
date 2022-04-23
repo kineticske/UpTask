@@ -31,4 +31,4 @@ special note: flash use sequelize validation
 
 
 PASSPORT AUTH
-http://www.passportjs.org/
+http://www.passportjs.org/ 
