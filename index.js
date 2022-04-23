@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = require('./routes'); //routes
 const path = require('path'); //The path module provides utilities for working with file and directory paths. 
-const bodyParser=require('body-parser');
+const bodyParser=require('body-parser'); //read data of formulary (it's necessary)
 const expressValidator = require('express-validator'); //express validator
 const helper = require('./helper');
 const flash = require('connect-flash');
