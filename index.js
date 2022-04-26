@@ -47,7 +47,7 @@ app.use(passport.session())
 
 //using helper's modules and flash  (local variables)
 app.use((req, res, next) => {
-    res.locals.var_dump = helper.var_dump;
+    res.locals.var_dump = helper.var_dump;  //res.local pasa a toda la app la funcion que se va a ahacer el .crea la nueva variable que funcionara en todos
     res.locals.messages=req.flash()
     next();
 })
